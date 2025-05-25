@@ -1,6 +1,6 @@
 # Instructions to Configure Bogo's Raspberry Pi 4 or 5
 
-Mmmmmmm
+The purpose of this file is to install the minimum configuration for any Bogobot's Raspberry Pi 4 or 5.
 
 ---
 ## Ubuntu 24.04.02 LTS Instalation
@@ -13,7 +13,7 @@ Mmmmmmm
 
 ### Raspberry Pi Imager Install
 
-1. Install the Rasberry Pi Imager needed for your OS from this link: 
+1. Install the Rasberry Pi Imager needed for your OS from here: 
 2. Excecute the installation file and acept terms and conditions.
 3. Open the Raspberry Pi Imager program.
 4. If the installation is succesfull you will see the following app in ypour computer.
@@ -37,11 +37,42 @@ Mmmmmmm
 
 ### Ubuntu 24.04.02 LTS Setup
 
-1. Timezone
-2. Keyboard
-3. Desktop
-4. sudo apt 
+The when configuing the OS system make sure you:
 
++ Select English Language
++ Select Mexico City Time Zone
++ Select Spanish Latin America Keyboard
++ Pin the Terminal to Desktop
+
+Once your OS is configured update and upgrade apt
+```nano 
+sudo apt update
+sudo apt upgrade
+```
+
+Install `raspi-config` to enable GIPO, I2C, ethernet among other features 
+
+```nano 
+sudo apt install raspi-config
+```
+
+Install `gedit` text editor for future use
+
+```nano 
+sudo apt-get install gedit
+```
+
+Install `pip` to download python packages
+
+```nano 
+sudo apt install python3-pip
+```
+
+Install `net-tools` for future use
+
+```nano 
+sudo apt install net-tools
+```
 ---
 ## ROS2 Jazzy Jalisco Installation
 
@@ -138,7 +169,6 @@ nano .bashrc
 Paste the following lines at the end of the `.bashrc` file to configure ROS2 enviorment in the terminal
 
 ```nano
-
 source /opt/ros/humble/setup.bash
 source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash
 source /usr/share/colcon_cd/function/colcon_cd.sh
@@ -158,15 +188,183 @@ Save the `.bashrc` file, close the terminal and open a new one to apply changes.
 ---
 ## Dynamixel SDK Installation and Setup
 
+Change to the `\ros2_ws\src` directory
+
+```nano
+cd
+cd ros2_ws/src
+```
+
+Clone the [Robotis Dynamixel SDK GitHub Repository](https://github.com/ROBOTIS-GIT/DynamixelSDK) and compile ROS2 packages.
+
+
+```nano
+git clone https://github.com/ROBOTIS-GIT/DynamixelSDK
+cb
+```
+
+If everything worked properly, you should see the correct compilation of packages `pkg`, `pkg` and `pkg`.
+
 ---
 ## MPU6050 Installation and Setup
+
+### Hardware Setup
+
+Take the MPU5060 and conect it to the Raspberry Pi as shown in the image below.
+
+<p align="center">
+<img src="IMGS/MPU6050.png" alt="MPU5060">
+</p>
+
+### Software Install
+Install prerequiste packages
+
+```nano
+sudo apt install python3-smbus
+```
+
+Install [MPU5060 Package](https://github.com/m-rtijn/mpu6050)
+
+```nano
+pip install mpu6050-raspberrypi --break-system-packages
+```
+
+Open the main Raspberry Pi configuration window with 
+```nano
+sudo raspi-config
+```
+
+Scroll down to ***Interface Options*** and select it
+<p align="center">
+<img src="IMGS/raspi_config.png" alt="Rpi_imager">
+</p>
+
+Scroll down to ***I2C*** and select it to enable comunication.
+
+<p align="center">
+<img src="IMGS/raspi_interfaces.png" alt="Rpi_imager">
+</p>
 
 ---
 ## HX711 Installation and Setup
 
----
-## Remote Conection
+### Hardware Setup
 
-Ethernet 
-Hotspot
-SSH
+PENDING...
+
+<p align="center">
+<img src="IMGS/HX711.png" alt="HX711">
+</p>
+
+### Software Install
+Install [HX711 Package](https://pypi.org/project/hx711-rpi-py/)
+
+```nano
+pip install hx711-rpi-py --break-system-packages
+```
+
+---
+## Remote Conection with SSH
+
+Open the main Raspberry Pi configuration window with 
+```nano
+sudo raspi-config
+```
+
+Scroll down to ***Interface Options*** and select it
+<p align="center">
+<img src="IMGS/raspi_config.png" alt="Rpi_imager">
+</p>
+
+Scroll down to ***SSH*** and select it to enable comunication.
+
+<p align="center">
+<img src="IMGS/raspi_interfaces_ssh.png" alt="Rpi_imager">
+</p>
+
+Install OpenSSH Server
+```nano
+sudo apt-get install openssh-server
+```
+
+Start and enable the SSH service
+```nano
+sudo systemctl start ssh
+sudo systemctl enable ssh
+```
+
+**Reboot** the Raspberry Pi to apply changes
+
+### Stablish Conection with Eternet
+
+Connect the Ethernet cable from the Raspberry Pi to the computer as shown the followng images.
+
+<p align="center">
+<img src="IMGS/ethernet.png" alt="ethernet">
+</p>
+
+**In the Raspberry Pi** excecute the following command 
+```nano
+ifconfig
+```
+
+The ethernet port and IP adress should apear in the terminal.
+
+<p align="center">
+<img src="IMGS/ethernet_bogo.png" alt="ethernet">
+</p>
+ 
+**In your computer** (on Windows) excecute the following command 
+```nano
+ipconfig
+```
+
+**In your computer** (on Ubuntu/Linux) excecute the following command 
+```nano
+ifconfig
+```
+
+The ethernet port and IP adress should apear in the terminal.
+
+<p align="center">
+<img src="IMGS/ethernet_windows.png" alt="ethernet">
+</p>
+
+Note that they share the same network **192.168.137.###**, to check conectivity run a ping form your computer to the Raspberry Pi.
+
+following command 
+```nano
+ping 192.168.137.102
+```
+If there is conectivity you should recieve a response from the IP Adress.
+
+Conect to the Raspberry Pi using SSH
+```nano
+ssh bogo@192.168.137.102
+```
+
+### Stablish Conection with Hotspot
+
+PENDING ...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
