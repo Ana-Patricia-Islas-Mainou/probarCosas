@@ -19,7 +19,7 @@ The purpose of this file is to install the minimum configuration for any Bogobot
 4. If the installation is succesfull you will see the following app in ypour computer.
 
 <p align="center">
-<img src="IMGS/rpi_imager.png" alt="Rpi_imager" width="300" height="200">
+<img src="IMGS_RPi/rpi_imager.png" alt="Rpi_imager" width="300" height="200">
 </p>
 
 ### Ubuntu 24.04.02 LTS with Raspberry Pi Imager
@@ -28,7 +28,7 @@ The purpose of this file is to install the minimum configuration for any Bogobot
 2. Click on choose OS, scroll down and click in Other General Purpose OS -> Ubuntu -> Ubuntu Desktop 24.04.02 LTS (64-bit). Make sure you click on the RPi 4/400/5 Model.
 
 <p align="center">
-<img src="IMGS/choose_image.png" alt="Rpi_imager">
+<img src="IMGS_RPi/choose_image.png" alt="Rpi_imager">
 </p>
 
 3. Select the target MircoSD and click on start.
@@ -76,7 +76,7 @@ sudo apt install net-tools
 ---
 ## ROS2 Jazzy Jalisco Installation
 
-This section contains the ROS2 Jazzy Jalisco Installation steps for Ubuntu. You can also find them in the [ROS2 Jazzy Jalisco Documentation](hhttps://docs.ros.org/en/jazzy/Installation/Ubuntu-Install-Debs.html#next-steps).
+This section contains the ROS2 Jazzy Jalisco Installation steps for Ubuntu. You can also find them in the [ROS2 Jazzy Jalisco Documentation](https://docs.ros.org/en/jazzy/Installation/Ubuntu-Install-Debs.html#next-steps).
 
 ### System Setup
 
@@ -213,7 +213,7 @@ If everything worked properly, you should see the correct compilation of package
 Take the MPU5060 and conect it to the Raspberry Pi as shown in the image below.
 
 <p align="center">
-<img src="IMGS/MPU6050.png" alt="MPU5060">
+<img src="IMGS_RPi/MPU6050.png" alt="MPU5060">
 </p>
 
 ### Software Install
@@ -236,13 +236,13 @@ sudo raspi-config
 
 Scroll down to ***Interface Options*** and select it
 <p align="center">
-<img src="IMGS/raspi_config.png" alt="Rpi_imager">
+<img src="IMGS_RPi/raspi_config.png" alt="Rpi_imager">
 </p>
 
 Scroll down to ***I2C*** and select it to enable comunication.
 
 <p align="center">
-<img src="IMGS/raspi_interfaces.png" alt="Rpi_imager">
+<img src="IMGS_RPi/raspi_interfaces.png" alt="Rpi_imager">
 </p>
 
 ---
@@ -253,7 +253,7 @@ Scroll down to ***I2C*** and select it to enable comunication.
 PENDING...
 
 <p align="center">
-<img src="IMGS/HX711.png" alt="HX711">
+<img src="IMGS_RPi/HX711.png" alt="HX711">
 </p>
 
 ### Software Install
@@ -273,13 +273,13 @@ sudo raspi-config
 
 Scroll down to ***Interface Options*** and select it
 <p align="center">
-<img src="IMGS/raspi_config.png" alt="Rpi_imager">
+<img src="IMGS_RPi/raspi_config.png" alt="Rpi_imager">
 </p>
 
 Scroll down to ***SSH*** and select it to enable comunication.
 
 <p align="center">
-<img src="IMGS/raspi_interfaces_ssh.png" alt="Rpi_imager">
+<img src="IMGS_RPi/raspi_interfaces_ssh.png" alt="Rpi_imager">
 </p>
 
 Install OpenSSH Server
@@ -300,7 +300,7 @@ sudo systemctl enable ssh
 Connect the Ethernet cable from the Raspberry Pi to the computer as shown the followng images.
 
 <p align="center">
-<img src="IMGS/ethernet.png" alt="ethernet">
+<img src="IMGS_RPi/ethernet.png" alt="ethernet">
 </p>
 
 **In the Raspberry Pi** excecute the following command 
@@ -311,7 +311,7 @@ ifconfig
 The ethernet port and IP adress should apear in the terminal.
 
 <p align="center">
-<img src="IMGS/ethernet_bogo.png" alt="ethernet">
+<img src="IMGS_RPi/ethernet_bogo.png" alt="ethernet">
 </p>
  
 **In your computer** (on Windows) excecute the following command 
@@ -327,7 +327,7 @@ ifconfig
 The ethernet port and IP adress should apear in the terminal.
 
 <p align="center">
-<img src="IMGS/ethernet_windows.png" alt="ethernet">
+<img src="IMGS_RPi/ethernet_windows.png" alt="ethernet">
 </p>
 
 Note that they share the same network **192.168.137.###**, to check conectivity run a ping form your computer to the Raspberry Pi.
