@@ -169,7 +169,7 @@ nano .bashrc
 Paste the following lines at the end of the `.bashrc` file to configure ROS2 enviorment in the terminal
 
 ```nano
-source /opt/ros/humble/setup.bash
+source /opt/ros/jazzy/setup.bash
 source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash
 source /usr/share/colcon_cd/function/colcon_cd.sh
 export _colcon_cd_root_=/opt/ros/humble
@@ -346,7 +346,6 @@ ssh bogo@192.168.137.102
 ### Stablish Conection with Hotspot
 
 PENDING ...
-
 
 
 
