@@ -5,7 +5,7 @@ import time
 
 # === Configuración del área de trabajo ===
 A = 100  # Ancho del rectángulo
-B = 60   # Alto del rectángulo
+B = 200   # Alto del rectángulo
 
 # === Configura el puerto serial ===
 ser = serial.Serial('COM9', 9600)  # Cambia 'COM3' según tu sistema
@@ -16,10 +16,14 @@ plt.ion()
 fig, ax = plt.subplots()
 
 # Dibujar el rectángulo
-rect = patches.Rectangle((0, 0), A, B, linewidth=1.5, edgecolor='black', facecolor='none')
-ax.add_patch(rect)
-ax.set_xlim(0, A)
-ax.set_ylim(0, B)
+rfoot = patches.Rectangle((10, -B/2), A, B, linewidth=1.5, edgecolor='black', facecolor='none')
+lfoot = patches.Rectangle((-10, B/2), -A, -B, linewidth=1.5, edgecolor='black', facecolor='none')
+
+ax.add_patch(rfoot)
+ax.add_patch(lfoot)
+lim_size = 150
+ax.set_xlim(-lim_size, lim_size)
+ax.set_ylim(-lim_size, lim_size)
 
 # Crear punto inicial (vacío)
 point, = ax.plot([], [], 'ro', markersize=8)
@@ -39,12 +43,13 @@ try:
                 # Mostrar punto
                 point.set_data([x], [y])
                 fig.canvas.draw()
-                plt.pause(0.5)
-
+                
+                plt.pause(0.05)
+                """
                 # Borrar punto (para efecto parpadeante)
                 point.set_data([None], [None])
                 fig.canvas.draw()
-                plt.pause(0.5)
+                plt.pause(0.5)"""
 
             except ValueError:
                 print(f"Dato no válido: {line}")
