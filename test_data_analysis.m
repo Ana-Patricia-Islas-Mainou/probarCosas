@@ -1,7 +1,7 @@
 %% DATA ANALYSIS
 clear; clc
 
-showPlots = 1;
+showPlots = 0;
 % basic analisis of all samples
 [T_c1_FLAT, A_c1_FLAT, stats_c1_FLAT] = basicAnalysis('LOGS\FLAT\TEST1_CURRENT.csv',1,showPlots);
 [T_v1_FLAT, A_v1_FLAT, stats_v1_FLAT] = basicAnalysis('LOGS\FLAT\TEST1_VOLTAGE.csv',2,showPlots);
@@ -9,7 +9,7 @@ showPlots = 1;
 [T_s1_FLAT, A_s1_FLAT, stats_s1_FLAT] = basicAnalysis('LOGS\FLAT\TEST1_SPEED.csv',4,showPlots);
 
 % current specific
-%make_lineplot_all_motors(A_c1_FLAT, "Current [mA])
+%make_lineplot_all_motors(A_c1_FLAT, "Current [mA]")
 %make_lineplot_individual_run(A_c1_FLAT,"Current [mA]", 18)
 %make_lineplot_compareLegs(A_c1_FLAT,"Current [mA]")
 
@@ -17,13 +17,14 @@ showPlots = 1;
 %make_lineplot_all_motors(A_v1_FLAT, "Voltage [V]")
 
 % temperature specific ---------
-%make_lineplot_all_motors(A_t1_FLAT,"Temperature [°C]")
+make_lineplot_all_motors(A_t1_FLAT,"Temperature [°C]")
 
 % speed specific ----
 %make_boxplot_individual_run(A_s1_FLAT)
+%make_lineplot_all_motors(A_s1_FLAT, "Speed [$/frac{rad}{s}$]")
 
 %clc;
-%showPlots = 1;
+showPlots = 1;
 
 % power and energy ---------
 [eP, ePTot, eE, eETot] = electPowerEnegry(A_c1_FLAT, A_v1_FLAT, 0.1, showPlots);
@@ -31,8 +32,8 @@ showPlots = 1;
 T_eP1_FLAT = basicStadistics(eP);
 T_eE1_FLAT = basicStadistics(eE);
 
-make_boxplot_individual_run(eP,"Electrical Power [W]");
-make_boxplot_individual_run(eE,"Electrical Energy [J]");
+%make_boxplot_individual_run(eP,"Electrical Power [W]");
+%make_boxplot_individual_run(eE,"Electrical Energy [J]");
 
 % KPI ----------------------------------
 % COST OF TRANSPORT ------
@@ -71,6 +72,7 @@ function make_lineplot_all_motors(matrix, tit)
         '18','Interpreter','latex')
     set(gca,"TickLabelInterpreter",'latex')
     title(tit)
+    pbaspect([1,1,1])
     grid on
     hold off
 end 
@@ -85,6 +87,7 @@ function make_lineplot_compareLegs(matrix, dataInfo)
         xlabel('t[s]','interpreter','latex')
         ylabel(dataInfo,'interpreter','latex')
         set(gca,"TickLabelInterpreter",'latex')
+        pbaspect([1,1,1])
         grid on
         hold off
     end 
@@ -99,6 +102,7 @@ function make_boxplot_individual_run(matrix, dataInfo) % box - ID completo
     xlabel('Motor ID','interpreter','latex')
     ylabel(dataInfo,'interpreter','latex')
     set(gca,"TickLabelInterpreter",'latex')
+    pbaspect([1,1,1])
 end
 
 function make_lineplot_individual_run(matrix, dataInfo, ID) % line - 1 ID
@@ -110,6 +114,7 @@ function make_lineplot_individual_run(matrix, dataInfo, ID) % line - 1 ID
     x = 'Motor ID '+int2str(ID);
     xlabel(x,'interpreter','latex')
     ylabel(dataInfo,'interpreter','latex')
+    pbaspect([1,1,1])
     set(gca,"TickLabelInterpreter",'latex')
 end
 
