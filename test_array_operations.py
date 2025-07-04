@@ -29,6 +29,19 @@ def writeToFIle(filename, data):
 def readFileLogger():
     pass
 
+
+def bits2radSec_DataFrame(bits):
+    return bits * 0.229 * 0.1047 # bits -> rpm * rmp -> rad/s
+
+def bits2mA_DataFrame(bits):
+    return bits.multiply(3.36) # bits -> mA 
+
+def bits2volts_DataFrame(bits):
+    return bits * 0.1 # bits -> V
+
+def bits2tep_DataFrame(bits):
+    return bits * 1 # bits -> grados celcius 
+
 ## -------------------------------------------------------------------------------
 
 # Name of the CSV file
