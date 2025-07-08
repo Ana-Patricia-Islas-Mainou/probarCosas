@@ -12,12 +12,13 @@ showPlots = 0;
 %make_lineplot_all_motors(A_c1_FLAT, "Current [mA]")
 %make_lineplot_individual_run(A_c1_FLAT,"Current [mA]", 18)
 %make_lineplot_compareLegs(A_c1_FLAT,"Current [mA]")
+%make_lineplot_wholeRobot(A_c1_FLAT,"Current [mA]")
 
 % voltage specific -------
 %make_lineplot_all_motors(A_v1_FLAT, "Voltage [V]")
 
 % temperature specific ---------
-make_lineplot_all_motors(A_t1_FLAT,"Temperature [°C]")
+%make_lineplot_all_motors(A_t1_FLAT,"Temperature [°C]")
 
 % speed specific ----
 %make_boxplot_individual_run(A_s1_FLAT)
@@ -93,6 +94,17 @@ function make_lineplot_compareLegs(matrix, dataInfo)
     end 
 end 
 
+function make_lineplot_wholeRobot(matrix, dataInfo)
+    data = sum(matrix(:,2:end),2);
+    figure 
+    plot(matrix(:,1),data)
+    xlabel('t[s]','interpreter','latex')
+    ylabel(dataInfo,'interpreter','latex')
+    set(gca,"TickLabelInterpreter",'latex')
+    pbaspect([1,1,1])
+    grid on
+    hold off
+end
 % GRAFICAS INDIVIDUALES (PRUEBA) ------------------------------------------
 function make_boxplot_individual_run(matrix, dataInfo) % box - ID completo
     figure 
