@@ -1,5 +1,11 @@
 # pip install psutil
+# pip install pytictoc
+from pytictoc import TicToc
 
+t = TicToc()
+t.tic()
+# ... código a medir ...
+t.toc() 
 import psutil
 import time
 
